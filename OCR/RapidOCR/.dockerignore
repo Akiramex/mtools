@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+temp_files/
+logs/
+*.log
+docs/
+.claude/
+.git/

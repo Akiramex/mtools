@@ -1,0 +1,9 @@
+fastapi>=0.110
+uvicorn>=0.29
+rapidocr>=3.9.0
+onnxruntime>=1.17
+pydantic>=2.0
+pyyaml>=6.0
+python-multipart>=0.0.6
+pillow>=10.0
+numpy>=1.24
