@@ -31,6 +31,8 @@ def build_engine(config: AppConfig) -> Any:
         params["Rec.model_path"] = ocr.rec_model_path
     if ocr.rec_keys_path:
         params["Rec.rec_keys_path"] = ocr.rec_keys_path
+    if ocr.max_side_len:
+        params["Global.max_side_len"] = ocr.max_side_len
     return RapidOCR(params=params)
 
 
@@ -73,11 +75,15 @@ class OcrModel:
         raw_boxes = to_python(getattr(output, "boxes", None))
         txts = list(getattr(output, "txts", None) or [])
         scores = [float(s) for s in (getattr(output, "scores", None) or [])]
+        elapse_list = [int(round(s * 1000)) for s in (getattr(output, "elapse_list", None) or [])]
 
         boxes = []
         if raw_boxes:
             for poly in raw_boxes:
                 boxes.append([[int(round(p)) for p in point] for point in poly])
 
-        logger.info("OCR recognized %d boxes in %dms", len(txts), elapsed_ms)
+        logger.info(
+            "OCR %d boxes, total %dms, per-stage(det/cls/rec) ms=%s",
+            len(txts), elapsed_ms, elapse_list,
+        )
         return OcrResult(boxes=boxes, txts=txts, scores=scores, elapsed_ms=elapsed_ms)

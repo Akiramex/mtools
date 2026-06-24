@@ -113,6 +113,7 @@ class OcrModelsConfig(BaseModel):
     cls_model_path: str | None = None
     rec_model_path: str | None = None
     rec_keys_path: str | None = None    # 识别模型字典文件
+    max_side_len: int | None = None     # det 输入图最大边像素（包默认 2000），越小越快；性能调参见 PERFORMANCE.md
     intra_op_num_threads: int = 4
 
 class ModelsConfig(BaseModel):
@@ -151,6 +152,7 @@ models:
     cls_model_path: null
     rec_model_path: null
     rec_keys_path: null      # 识别模型字典文件（用本地 rec 模型时一起填）
+    max_side_len: 960        # det 输入图最大边像素（包默认 2000），越小越快；详见 PERFORMANCE.md
     intra_op_num_threads: 4
 
 concurrency:

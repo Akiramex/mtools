@@ -21,6 +21,7 @@
 | [docs/DESIGN.md](docs/DESIGN.md) | 架构、API 契约、请求/响应规范、并发模型、设计决策与权衡 |
 | [docs/IMPLEMENTATION.md](docs/IMPLEMENTATION.md) | 目录结构、各模块职责、配置 schema、RapidOCR 集成、编码约定 |
 | [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | 手动 commit 导出自包含镜像、setup、运行、环境变量、健康检查、故障排查 |
+| [docs/PERFORMANCE.md](docs/PERFORMANCE.md) | 推理耗时优化记录（诊断方法、max_side_len/线程/tiny 实测、调参流程） |
 
 ## 快速上手
 

@@ -21,6 +21,7 @@ class OcrModelsConfig(BaseModel):
     cls_model_path: str | None = None
     rec_model_path: str | None = None
     rec_keys_path: str | None = None
+    max_side_len: int | None = None
     intra_op_num_threads: int = 4
 
 

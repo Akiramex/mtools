@@ -11,6 +11,7 @@ models:
     cls_model_path: null      # null=用 whl 内置默认 cls（v4 mobile），与默认 cls_image_shape 匹配，无尺寸问题
     rec_model_path: "loacl_models/PP-OCRv6/rec/PP-OCRv6_rec_small.onnx"
     rec_keys_path: null      # onnxruntime 下字典已内嵌在 ONNX 里，本字段不生效（仅 paddle/mnn 等引擎才需要）
+    max_side_len: 960        # det 把图最大边缩到此值再跑，越小越快；手写图小字多就改 1280
     intra_op_num_threads: 4
 
 concurrency:
