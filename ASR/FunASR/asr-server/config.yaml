@@ -1,0 +1,49 @@
+server:
+  host: "0.0.0.0"
+  port: 9090
+  log_level: "info"
+  temp_dir: "temp_files"
+  log_file: "logs/app.log"
+
+models:
+  asr:
+    model: "iic/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch"
+    vad_model: "iic/speech_fsmn_vad_zh-cn-16k-common-pytorch"
+    punc_model: "iic/punc_ct-transformer_zh-cn-common-vocab272727-pytorch"
+    # spk_model: "iic/speech_campplus_sv_zh-cn_16k-common"  # SenseVoiceSmall 不支持时间戳，无法使用 spk_model
+  sv:
+    model: "iic/speech_campplus_sv_zh-cn_16k-common"
+  ser:
+    model: "iic/emotion2vec_base_finetuned"
+    enabled: true
+
+hardware:
+  device: "cuda" # "cpu" / "cuda" / "cuda:0" / "xpu" / "mps" / "npu"
+  ncpu: 4
+  ngpu: 1
+
+concurrency:
+  thread_pool_size: 4
+  max_concurrent_asr: 4
+  max_concurrent_sv: 2
+  max_concurrent_ser: 2
+  use_process_pool: true
+
+speaker_db:
+  path: "speaker_db.json"
+  reload_interval_sec: 5
+  similarity_threshold: 0.5
+
+task_queue:
+  max_workers: 2
+  result_ttl_sec: 3600
+  cleanup_interval_sec: 60
+
+upload:
+  max_file_size_mb: 100
+  allowed_extensions:
+    - ".wav"
+    - ".mp3"
+    - ".m4a"
+    - ".flac"
+    - ".ogg"

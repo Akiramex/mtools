@@ -6,16 +6,17 @@ Python 3.10
 
 ~~~ bash
 
-python -m venv ./venv
+uv init --python 3.10
 
-# Windows
-pip install -U pip
-pip install "torch>=1.13" torchaudio -U funasr tiktoken
+uv venv
 
-# Linux/macOS
-pip install -U pip
-pip install "torch>=1.13" torchaudio -U funasr tiktoken
+use .venv/Scripts/activate.nu
 
+uv pip install pip
+uv pip install torch>=1.13 torchaudio
+uv pip install -U funasr
+
+uv pip install fastapi uvicorn
 ~~~
 
 ## Run

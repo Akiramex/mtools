@@ -1,0 +1,36 @@
+server:
+  host: "0.0.0.0"
+  port: 9090
+  log_level: "info"
+  temp_dir: "temp_files"
+  log_file: "logs/app.log"
+
+models:
+  asr:
+    model: "iic/speech_seaco_paraformer_large_asr_nat-zh-cn-16k-common-vocab8404-pytorch"
+    vad_model: "iic/speech_fsmn_vad_zh-cn-16k-common-pytorch"
+    punc_model: "iic/punc_ct-transformer_zh-cn-common-vocab272727-pytorch"
+    spk_model: "iic/speech_campplus_sv_zh-cn_16k-common"
+
+hardware:
+  device: "cpu"
+  ncpu: 4
+
+concurrency:
+  thread_pool_size: 4
+  max_concurrent_asr: 4
+
+task_queue:
+  max_workers: 2
+  result_ttl_sec: 3600
+  cleanup_interval_sec: 300
+
+upload:
+  max_file_size_mb: 100
+  allowed_extensions:
+    - ".wav"
+    - ".mp3"
+    - ".flac"
+    - ".ogg"
+    - ".m4a"
+    - ".aac"
